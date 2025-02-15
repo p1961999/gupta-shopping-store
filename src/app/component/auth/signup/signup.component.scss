@@ -1,0 +1,139 @@
+/* Full Page Background */
+.signup-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient(to right,#f8d7da, #fde2e482);/* Baby Pink Gradient */
+  }
+  
+  /* White Card Container */
+  .signup-container {
+    background: white;
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+
+  /* Heading */
+  h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  /* Form Styles */
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Avatar Upload */
+  .avatar-upload {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  .avatar-upload label {
+    cursor: pointer;
+    display: block;
+    position: relative;
+  }
+  
+  .avatar-preview {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+  }
+  
+  #avatarInput {
+    display: none;
+  }
+  
+  /* Input Field */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  /* Error Messages */
+  .error {
+    color: red;
+    font-size: 12px;
+    text-align: left;
+    line-height: 1.25rem;
+  }
+  
+  /* Terms and Conditions */
+  .terms {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  
+    a {
+      color: #ff3f6c;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  }
+  
+  /* Signup Button */
+  button {
+    width: 100%;
+    background-color: #ff3f6c;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    transition: background 0.3s ease;
+  }
+  
+  button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+  }
+  
+  button:hover {
+    background: #e3395a;
+  }
+  
+  /* Help Text */
+  .help {
+    font-size: 14px;
+    color: #444;
+    text-align: center;
+  
+    a {
+      color: #ff3f6c;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+
+  .fa-eye-slash,
+.fa-eye {
+  font-size: 12px;
+  cursor: pointer;
+  // margin-top: 10px;
+}
+  

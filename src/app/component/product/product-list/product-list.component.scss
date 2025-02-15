@@ -1,0 +1,154 @@
+.loader{
+  align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    margin-top: 10px;
+}
+
+  .ng-select {
+    ::ng-deep .ng-select-container {
+      height: 35px;
+      padding: 5px;
+      min-height: 30px;
+      background-color: #f9f9fc;
+      border: 0.8px solid #d9e2e5 !important;
+      box-shadow: none !important;
+
+      .ng-value-container {
+        font-size: 13px;
+        color: #313438;
+
+        &:focus {
+          outline: none;
+          box-shadow: none;
+        }
+
+        .ng-placeholder {
+          font-size: 13px;
+          opacity: 0.7;
+          font-family: "Poppins";
+        }
+
+        .ng-value-label{
+            font-size: 13px;
+            margin-left: 3px;
+            opacity: 0.7;
+            font-family: "Poppins";
+        }
+      }
+
+      .ng-input {
+        input {
+          color: #313438;
+        }
+      }
+
+      .ng-clear-wrapper {
+        display: none;
+      }
+
+      .ng-arrow-wrapper {
+        .ng-arrow {
+          mask-image: url('/assets/icons/down-arrow-red.svg');
+          mask-size: contain;
+          -webkit-mask-image: url('/assets/icons/down-arrow-red.svg');
+          -webkit-mask-size: contain;
+          background: #f86a5b;
+          height: 8px;
+          top: -1px;
+          width: 14px;
+          border: none;
+        }
+      }
+    }
+
+
+
+    ::ng-deep .ng-dropdown-panel {
+      .ng-dropdown-panel-items {
+        .ng-option {
+          .ng-option-label {
+            font-size: 12px !important;
+            color: #313438;
+          }
+        }
+      }
+    }
+  }
+
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    padding: 0.5rem;
+  }
+  
+  .pagination-btn {
+    background-color: transparent;
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    margin: 0 0.7rem;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    color: #000;
+  
+    &:hover {
+      background-color: #eaefef;
+      color: #da4e3f;
+    }
+  
+    &.prev-btn,
+    &.next-btn {
+      display: flex;
+      background-color: transparent;
+      border: none;
+      padding: 0.25rem;
+      font-size: 28px;
+      color: #da4e3f;
+      cursor: pointer;
+  
+      &:hover {
+        background-color: transparent; /* No background on hover for arrows */
+        color: #e63946; /* Slightly darker red for hover effect on arrows */
+      }
+    }
+  
+    &:disabled {
+      color: #ccc;
+      cursor: not-allowed;
+      background-color: transparent; /* Ensure disabled buttons have no background */
+    }
+  }
+  
+  .pagination-input {
+    width: 40px; /* Slightly wider for better user experience */
+    text-align: center;
+    font-size: 16px; /* Increased font size for better readability */
+    padding: 0.4rem;
+    border: 1px solid #da4e3f;
+    border-radius: 4px;
+    margin: 0 0.5rem;
+    outline: none;
+    background-color: #fff; /* Default grey background color */
+    color: #000;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+  
+    &:hover {
+      border-color: #eaf0f2; /* Subtle hover effect */
+    }
+  
+    &:focus {
+      border-color: #e63946; /* Border color changes on click (focus) */
+      background-color: #f7f9fa; /* Background color changes to grey on click (focus) */
+      box-shadow: 0 0 5px rgba(218, 78, 63, 0.5); /* Added subtle box-shadow */
+    }
+  }
+  
+  .pagination-input::placeholder {
+    color: #eff8fb; /* Light grey placeholder for better UX */
+  }
+  

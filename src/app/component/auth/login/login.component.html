@@ -1,0 +1,44 @@
+<div class="login-wrapper">
+  <div class="login-container">
+    <h2><strong>Login</strong> or <strong>Signup</strong></h2>
+
+    @if(errorMessage){
+      <div class="error-chip mb-2 px-3 py-2 gap-2">
+      <img 
+        src="assets/icons/error-icons.png" 
+        alt="Error" 
+        height="15px" 
+        width="15px" 
+      />
+      <span>{{ errorMessage }}</span>
+      </div>
+    }
+    <!-- Emil Input -->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="mobile-input">
+        <input type="email" formControlName="email" placeholder="Email*" />
+      </div>
+      <div class="mobile-input mb-0">
+        <input type="password" formControlName="password" placeholder="Password*" />
+      </div>
+      <!-- <div class="text-end">
+        <span class="forget-password fs-10" (click)="redirectToForgotPassword()">Forgot Password?
+        </span>
+      </div> -->
+
+      <!-- Terms and Conditions -->
+      <p class="terms">
+        By continuing, I agree to the <a href="#">Terms of Use</a> & <a href="javascript::void(0)">Privacy Policy</a>
+      </p>
+
+      <!-- Continue Button -->
+      <button type="submit" [disabled]="loginForm.invalid">CONTINUE</button>
+
+      <!-- Help Link -->
+      <p class="help">
+        <span> Don’t have any account? </span>
+        <span class="create-account" (click)="redirectToSignUp()"> Create </span>
+      </p>
+    </form>
+  </div>
+</div>

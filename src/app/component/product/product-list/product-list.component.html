@@ -1,0 +1,49 @@
+<app-filter-product></app-filter-product>
+@if(isLoading){
+<div class="loader">
+  <img src="/assets/icons/loading.png" alt="loader" width="100px" height="100px" loading="lazy" />
+</div>
+}
+
+@if(!isLoading && products.length > 0){
+<div class="container">
+  @if(products.length > 0){
+  <div class="row justify-content-end p-3">
+    <div class="col-md-3">
+      <ng-select [items]="sortOptions" bindLabel="label" bindValue="value" [(ngModel)]="selectedSort"
+        (change)="sortProducts()" placeholder="Sort by" class="sort-dropdown" [searchable]="false">
+      </ng-select>
+    </div>
+  </div>
+  }
+
+  <div class="row mt-4">
+    @for(product of products | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage };let i = $index; track
+    i){
+    <div class="col-md-3 mb-4">
+      <app-product-card [product]="product"></app-product-card>
+    </div>
+    }
+  </div>
+
+  @if(showPagination && products.length>0){
+  <div class="pagination-container mt-0">
+    <button class="pagination-btn prev-btn" [disabled]="currentPage === 1" (click)="onPrevious()">
+      <mat-icon>navigate_before</mat-icon>
+    </button>
+
+    <input type="text" class="pagination-input" [(ngModel)]="tempPage" (keydown)="onEnter($event)"
+      aria-label="Current page number" />
+
+    <span class="pagination-total fw-500">/ {{ totalPages }}</span>
+
+    <button class="pagination-btn next-btn" [disabled]="currentPage === totalPages" (click)="onNext()">
+      <mat-icon>navigate_next</mat-icon>
+    </button>
+  </div>
+  }
+</div>
+}
+@if(products.length === 0 && !isLoading){
+<app-no-product></app-no-product>
+}

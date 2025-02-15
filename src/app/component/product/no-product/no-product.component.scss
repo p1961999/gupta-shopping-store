@@ -1,0 +1,9 @@
+.no-record-found-container {
+    background-image: url("/assets/icons/no-product-found.png"); /* Optional background */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 250px;
+    background-color: rgb(255 250 250 / 97%);
+    position: relative; /* For absolute positioning of elements */
+  }

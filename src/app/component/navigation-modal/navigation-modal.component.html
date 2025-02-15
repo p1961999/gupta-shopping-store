@@ -1,0 +1,64 @@
+<header class="header">
+ 
+  <div class="logo">
+    <img src="assets/icons/logo-4.jpeg" alt="Myntra Logo" (click)="navigateToHome()" />
+  </div>
+
+  <div class="hamburger-menu" (click)="toggleMenu()">
+    <mat-icon>menu</mat-icon>
+  </div>
+
+  <nav class="nav-links ms-3">
+    @for(category of allCategories.slice(0, 5); let i= $index; track i){
+    <a (click)="navigatoToProductList(category?.id)">{{category?.name | titlecase }}</a>
+    }
+  </nav>
+
+  <div class="search-icons-container">
+    <div class="search-container">
+      <input type="text" placeholder="Search for products, brands and more" />
+    </div>
+
+    <div class="icons">
+      @if(!isLoginOrSignupPage()){
+      <div class="profile-container underline-animation" [ngClass]="{'icon-hover': profileMenuOpen}"
+        (mouseenter)="showProfileMenu()">
+        <a class="profile-link"><i class="fas fa-user fs-14 icon"></i><span class="fs-14">Profile</span></a>
+        <div class="profile-menu" [class.show]="profileMenuOpen" (mouseenter)="keepProfileMenuOpen()"
+          (mouseleave)="hideProfileMenu()">
+          @if(!isAuthenticated()){
+          <div class="profile-header">
+            <p><strong>Welcome</strong></p>
+            <p>To access account and manage orders</p>
+
+            <button class="login-btn" (click)="navigateToLogin()">LOGIN / SIGNUP</button>
+          </div>
+          }@else {
+          <div>Hello {{name}}</div>
+          }
+          <hr />
+          <ul>
+            <li><a href="#">Orders</a></li>
+            <li><a href="#">Wishlist</a></li>
+            @if(isAuthenticated()){
+            <li><a (click)="logout()">Logout</a></li>
+            }
+          </ul>
+        </div>
+      </div>
+      }
+      <a href="#"><span class="icon"></span> Wishlist</a>
+      <a href="#">
+        <span class="icon">
+
+        </span>
+        @if(cartCount > 0){
+          <span>
+            {{ cartCount }}
+          </span>
+        } Bag
+      </a>
+    </div>
+
+  </div>
+</header>

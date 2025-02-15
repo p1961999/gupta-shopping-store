@@ -1,0 +1,68 @@
+:root {
+    --font-sans-serif: "Poppins", sans-serif;
+    --style-font: "Montez", cursive;
+    --swiper-pagination-bottom: 0px !important;
+  }
+  $custom-danger-color: #f86a5b;
+  $font-sizes: (
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  25,
+  26,
+  27,
+  28,
+  29,
+  30,
+  31,
+  32,
+  33,
+  34,
+  35,
+  36,
+  37,
+  38,
+  39,
+  40
+);
+
+@each $size in $font-sizes {
+    .fs-#{$size} {
+      font-size: #{$size}px !important;
+    }
+  }
+
+  $font-weights: (
+  400,
+  450,
+  500,
+  550,
+  600,
+  650,
+  700
+);
+
+@mixin generate-font-weight-classes($weights) {
+  @each $weight in $weights {
+    .fw-#{$weight} {
+      font-weight: #{$weight} !important;
+    }
+  }
+}
+
+// Generate font-weight classes
+@include generate-font-weight-classes($font-weights);

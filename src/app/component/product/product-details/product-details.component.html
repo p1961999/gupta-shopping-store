@@ -1,0 +1,89 @@
+<div class="sticky-cart-container" [class.visible]="isAtBottom">
+    <div class="cart-details">
+        <img [src]="selectedImage" [alt]="product?.title" class="cart-image" />
+        <div class="cart-info">
+            <h3>{{ product?.title }}</h3>
+            <span class="cart-price">₹{{ product?.price }}</span>
+            <span class="cart-mrp"><s>{{ mrp | currency: 'INR' }}</s></span>
+        </div>
+    </div>
+    <button class="add-to-bag-btn">Add To Cart</button>
+</div>
+@if(isLoading){
+<div class="loader">
+    <img src="/assets/icons/loading.png" alt="loader" width="100px" height="100px" loading="lazy" />
+</div>
+}
+<div class="product-detail-container">
+
+    <!-- Left Section: Product Images -->
+    <div class="image-section">
+        <div class="thumbnail-list">
+            <img *ngFor="let img of cleanedImageUrl" [src]="img" [alt]="product?.title" (click)="changeImage(img)"
+                [class.active]="selectedImage === img" />
+        </div>
+        <div class="product-image">
+            <div class="main-image">
+                <img [src]="selectedImage" [alt]="product?.title" />
+            </div>
+            <div class="d-flex justify-content-between p-2 mt-2 align-items-center">
+                <span class="fs-25 fw-500">{{product?.price | currency:'INR'}}</span>
+                <button class="add-to-bag-btn">Add To Bag</button>
+            </div>
+        </div>
+    </div>
+    <div class="details-section">
+        <div class="d-flex justify-content-between align-items-center gap-6">
+            <h2>{{ product?.title }}</h2>
+            <button class="share-btn" (click)="shareProduct()">
+                <i class="fa-solid fa-arrow-up-from-bracket"></i>
+            </button>
+        </div>
+        <div class="price">
+            <span class="final-price fs-25">₹{{ product?.price }}</span>
+            <span class="discount fs-15">18% Off</span>
+            <span class="mrp fs-15">MRP <s>{{mrp | currency: 'INR'}}</s></span>
+        </div>
+        <span class="discount fs-10">inclusive of all taxes</span>
+
+        <div class="hr w-100 my-4"></div>
+
+        <div class="size-selection">
+            <div class="d-flex justify-content-between align-items-center">
+                <span class="fw-bold">SELECT SIZE</span>
+                <a href="#" class="size-chart fs-12">SIZE CHART <i class="fa-solid fa-angle-right"></i></a>
+            </div>
+            <div class="size-options">
+                <button *ngFor="let size of sizes" [class.active]="size === selectedSize" (click)="selectSize(size)">
+                    <span class="size-label">{{ size.label }}</span>
+                    <span class="size-price">Rs. {{ size.price }}</span>
+                </button>
+            </div>
+        </div>
+
+        <button class="add-bag-btn mt-2">Add to Bag</button>
+        <div class="hr w-100 my-4"></div>
+
+        <div class="service-section">
+            <div class="service-card">
+                <img src="assets/icons/exchange.svg" alt="Exchange">
+                <span>3 Days Exchange</span>
+            </div>
+
+            <div class="service-card">
+                <img src="assets/icons/fast-delivery.svg" alt="Delivery">
+                <span>Fast Delivery</span>
+            </div>
+        </div>
+        <div class="hr w-100 my-4"></div>
+        <div class="highlight-selection">
+            <span class="fw-bold">Highlights</span>
+                <div *ngFor="let highlight of highlights" class="highlight-row mt-3">
+                    <span class="highlight-label fs-14">{{ highlight.key }}</span>
+                    <span class="highlight-value fs-14">{{ highlight.value }}</span>
+                </div>
+        </div>
+
+    </div>
+
+</div>
