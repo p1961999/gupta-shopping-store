@@ -7,6 +7,14 @@
     background: linear-gradient(to right,#f8d7da, #fde2e482); /* Baby Pink Gradient */
   }
 
+  .error {
+    color: red;
+    font-size: 12px;
+    text-align: left;
+    line-height: 1.25rem;
+    margin-bottom: 0px;
+  }
+
   .forget-password {
     font-size: 0.8rem;
     font-family: sans-serif;
@@ -48,7 +56,6 @@
     border: 1px solid #ddd;
     padding: 12px;
     border-radius: 5px;
-    margin-bottom: 15px;
     background: white;
   }
   

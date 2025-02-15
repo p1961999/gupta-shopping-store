@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
+import { LoginComponent } from '../auth/login/login.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-cart',
@@ -13,7 +17,12 @@ export class CartComponent implements OnInit {
   cartItems: any[] = [];
   totalAmount: number = 0;
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService, 
+    private authService: AuthService, 
+    private router: Router,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.loadCart();
@@ -56,7 +65,30 @@ export class CartComponent implements OnInit {
     this.loadCart();
   }
 
-  checkout() {
-    alert("Proceeding to checkout!");
+  proceedToCheckout(): void {
+    if (this.authService.isAuthenticated()) {
+      // Navigate to checkout page
+      this.router.navigate(['/checkout']);
+    } else {
+      this.openLoginModal();
+    }
+  }
+
+  openLoginModal(): void {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '500px', // Adjust width as needed
+      height: 'auto',
+      hasBackdrop: true,
+      backdropClass: 'custom-backdrop',
+      panelClass: 'login-modal-panel',
+      disableClose: true,
+      data: { fromCart: true }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'loggedIn') {
+        this.proceedToCheckout();
+      }
+    });
   }
 }

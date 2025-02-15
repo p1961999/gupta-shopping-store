@@ -9,7 +9,7 @@
         <div class="row mt-3">
         @for(category of categoryData; let i= $index; track i){
             <!-- <div class="col-md-3 mb-4"> -->
-        <div class="category-card me-3">
+        <div class="category-card me-3 mt-4">
             <img [src]="category?.image" [alt]="category?.name" class="category-image" (click)="navigateToProductList(category?.id)">
             <p class="category-name">{{category?.name}}</p>
           </div>
