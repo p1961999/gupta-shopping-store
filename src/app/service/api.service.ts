@@ -34,17 +34,51 @@ export class ApiService {
     } else {
       this.cart.push({ ...product, quantity: 1 });
     }
-    this.updateCart(this.cart);
+    this.updateCart();
+  }
+
+  removeFromCart(productId: number) {
+    this.cart = this.cart.filter(item => item.id !== productId);
+    this.updateCart();
+  }
+  
+  clearCart() {
+    this.cart = [];
+    this.updateCart();
+  }
+
+  getProductQuantity(productId: number): number {
+    const product = this.cart.find(item => item.id === productId);
+    return product ? product.quantity : 0;
+  }
+
+  increaseQuantity(productId: number) {
+    const product = this.cart.find(item => item.id === productId);
+    if (product) {
+      product.quantity += 1;
+      this.updateCart();
+    }
+  }
+
+  decreaseQuantity(productId: number) {
+    let product = this.cart.find(item => item.id === productId);
+    if (product) {
+      product.quantity -= 1;
+      if (product.quantity <= 0) {
+        this.cart = this.cart.filter(item => item.id !== productId);
+      }
+      this.updateCart();
+    }
   }
 
   getCartItems() {
     return this.cart;
   }
 
-  updateCart(cart: any) {
+  updateCart() {
     if (isPlatformBrowser(this.platformId)) {
-    localStorage.setItem('cart', JSON.stringify(cart));
-    this.cartSubject.next(cart);
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+    this.cartSubject.next(this.cart);
     }
   }
 

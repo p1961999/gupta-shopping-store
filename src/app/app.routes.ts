@@ -30,7 +30,6 @@ export const APP_ROUTES: Routes = [
   {
     path: 'cart',
     component: CartComponent, // Shopping Cart
-    canActivate: [AuthGuard],
   },
   {
     path: 'checkout',

@@ -20,6 +20,7 @@ export class ProductCardComponent {
   cleanedImageUrl: string[] = [];
   quantity: number = 0;
 
+
   constructor(private apiService: ApiService, private router: Router) { }
 
   ngOnInit() {
@@ -39,53 +40,30 @@ export class ProductCardComponent {
   }
 
   updateQuantity() {
-    const cart = this.apiService.getCartItems();
-    const cartItem = cart.find(item => item.id === this.product.id);
-    this.quantity = cartItem ? cartItem.quantity : 0;
+    this.quantity = this.apiService.getProductQuantity(this.product.id);
   }
 
   addToBag(product: any) {
-    const cart = this.apiService.getCartItems();
-    const existingProduct = cart.find(item => item.id === product.id);
-
-    if (existingProduct) {
-        existingProduct.quantity += 1;
-    } else {
-        cart.push({ ...product, quantity: 1 }); // ✅ Assigns a default quantity
-    }
-
-    this.apiService.updateCart(cart);
+    this.apiService.addToCart(product);
     this.updateQuantity();
-}
+  }
 
   increaseQuantity() {
-    const cart = this.apiService.getCartItems();
-    const product = cart.find(item => item.id === this.product.id);
-
-    if (product) {
-      product.quantity += 1;
-      this.apiService.updateCart(cart);
-      this.updateQuantity();
-    }
+    this.apiService.increaseQuantity(this.product.id);
+    this.updateQuantity();
   }
 
   decreaseQuantity() {
-    let cart = this.apiService.getCartItems();
-    const product = cart.find(item => item.id === this.product.id);
-
-    if (product) {
-      product.quantity -= 1;
-      if (product.quantity <= 0) {
-        cart = cart.filter(item => item.id !== this.product.id); // Remove from cart
-      }
-      this.apiService.updateCart(cart);
-      this.updateQuantity();
-    }
+    this.apiService.decreaseQuantity(this.product.id);
+    this.updateQuantity();
   }
-
-  
 
   navigateToDetail(id: number){
     this.router.navigate([`products/${id}`]);
+  }
+
+  isProductInCart(productId: number): boolean {
+    const cart = this.apiService.getCartItems();
+    return cart.some(item => item.id === productId && item.quantity > 0);
   }
 }

@@ -1,6 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { ApiService } from '../../../service/api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NoProductComponent } from "../no-product/no-product.component";
 
@@ -26,10 +26,10 @@ export class ProductDetailsComponent {
   ];
   isAtBottom: boolean = false;
   lastScrollTop: number = 0;
-
+  quantity: number = 0;
   highlights: any[]=[
   ]
-  constructor(private route: ActivatedRoute, private apiService: ApiService) {}
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) {}
 
   ngOnInit() {
     const productId = this.route.snapshot.paramMap.get('id');
@@ -54,6 +54,15 @@ export class ProductDetailsComponent {
     if (!image || !Array.isArray(image)) return [];
 
     return image.map(img=>img.replace(/^\[\"|\"\]$/g, ''));
+  }
+
+  addToBag(product: any) {
+    this.apiService.addToCart(product);
+    this.updateQuantity();
+  }
+
+  updateQuantity() {
+    this.quantity = this.apiService.getProductQuantity(this.product.id);
   }
 
   changeImage(image: string) {
@@ -94,5 +103,9 @@ export class ProductDetailsComponent {
 
     // Update last scroll position
     this.lastScrollTop = scrollTop;
+  }
+
+  goToCart(){
+    this.router.navigate(['/cart']);
   }
 }

@@ -7,7 +7,7 @@
             <span class="cart-mrp"><s>{{ mrp | currency: 'INR' }}</s></span>
         </div>
     </div>
-    <button class="add-to-bag-btn">Add To Cart</button>
+    <button class="add-to-bag-btn" (click)="addToBag(product)">Add To Cart</button>
 </div>
 @if(isLoading){
 <div class="loader">
@@ -28,7 +28,7 @@
             </div>
             <div class="d-flex justify-content-between p-2 mt-2 align-items-center">
                 <span class="fs-25 fw-500">{{product?.price | currency:'INR'}}</span>
-                <button class="add-to-bag-btn">Add To Bag</button>
+                <button class="add-to-bag-btn" (click)="addToBag(product)">Add To Bag</button>
             </div>
         </div>
     </div>
@@ -61,7 +61,18 @@
             </div>
         </div>
 
-        <button class="add-bag-btn mt-2">Add to Bag</button>
+        <button class="add-bag-btn d-flex justify-content-center align-items-center mt-2" (click)="addToBag(product)">
+            {{
+                quantity == 0 ? 
+                'Add to Bag' : 
+                'Go ToBag'
+            }}
+            @if(quantity != 0){
+                <span class="material-symbols-outlined" (click)="goToCart()">
+                    keyboard_arrow_right
+                </span>
+            }
+        </button>
         <div class="hr w-100 my-4"></div>
 
         <div class="service-section">
@@ -78,10 +89,10 @@
         <div class="hr w-100 my-4"></div>
         <div class="highlight-selection">
             <span class="fw-bold">Highlights</span>
-                <div *ngFor="let highlight of highlights" class="highlight-row mt-3">
-                    <span class="highlight-label fs-14">{{ highlight.key }}</span>
-                    <span class="highlight-value fs-14">{{ highlight.value }}</span>
-                </div>
+            <div *ngFor="let highlight of highlights" class="highlight-row mt-3">
+                <span class="highlight-label fs-14">{{ highlight.key }}</span>
+                <span class="highlight-value fs-14">{{ highlight.value }}</span>
+            </div>
         </div>
 
     </div>

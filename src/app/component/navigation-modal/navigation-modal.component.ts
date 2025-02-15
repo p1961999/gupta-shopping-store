@@ -4,11 +4,12 @@ import { NgClass, TitleCasePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
 import { ApiService } from '../../service/api.service';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @Component({
   selector: 'app-navigation-modal',
   standalone: true,
-  imports: [MatIconModule, NgClass, TitleCasePipe],
+  imports: [MatIconModule, NgClass, TitleCasePipe, MatBadgeModule],
   templateUrl: './navigation-modal.component.html',
   styleUrl: './navigation-modal.component.scss'
 })
@@ -60,7 +61,11 @@ export class NavigationModalComponent {
   }
 
   navigateToLogin(){
-    this.router.navigate(['/users/login'])
+    this.router.navigate(['/users/login']);
+  }
+
+  naviagetToCart(){
+    this.router.navigate(['/cart']);
   }
 
   isAuthenticated(): boolean{

@@ -1,1 +1,92 @@
-<p>cart works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card p-3 mt-3">
+                @for(cart of cartItems; let i =$index; track i){
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <img [src]="cart?.cleanedImages[0]" alt="img" class="cart-image">
+                    </div>
+                    <div class="col-md-4">
+                        <p>{{cart?.title}}</p>
+                        <div>
+                            <span class="mrp fs-15">MRP Rs.120</span>
+                            <span class="ms-2">{{cart?.price}}<span class="discount fs-15 ms-1">18% Off</span></span>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div>
+                            <span>Delivery by 11 PM, Tomorrow | </span>
+                            <span class="mrp fs-15">Rs.70</span>
+                        </div>
+                        <div>
+                            <span>Delivery in 2 days, Mon</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 mt-2">
+                        <div class="quantity-selector">
+                            <button (click)="decreaseQuantity(cart?.id)">-</button>
+                            <span>{{cart?.quantity}}</span>
+                            <button (click)="increaseQuantity(cart?.id)">+</button>
+                        </div>
+                    </div>
+                    <div class="col-md-2 d-flex justify-content-center align-items-center">
+                        <button class="remove-btn" (click)="removeItem(cart)">Remove</button>
+                    </div>
+                </div>
+                @if(cartItems.length>1 && i!==cartItems.length-1){
+                <div class="hr w-100 my-3"></div>
+                }
+                }
+            </div>
+            
+            <div class="sticky-cart-container mt-2 mb-0 d-flex justify-content-end align-items-center">
+                <button class="add-to-bag-btn" >Click To Proceed</button>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-3 mt-3">
+                <div class="row">
+                    <p class="fs-20 price">Price Details</p>
+                    <div class="hr w-100"></div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <span>Price ({{cartItems.length}} items)</span>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-end">
+                        <span>{{totalAmount | currency: 'INR'}}</span>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <span>Discount</span>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-end">
+                        <span>{{'0' | currency: 'INR'}}</span>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <span>Delivery Charges</span>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-end">
+                        <span class="mrp">{{'110' | currency: 'INR'}}</span>
+                    </div>
+                </div>
+                <div class="hr w-100 my-3"></div>
+                <div class="row">
+                    <div class="col-md-6 fw-600 fs-18">
+                        <p>Total Amount</p>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-end">
+                        {{totalAmount | currency: 'INR'}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

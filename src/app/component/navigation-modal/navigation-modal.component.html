@@ -39,7 +39,7 @@
           <hr />
           <ul>
             <li><a href="#">Orders</a></li>
-            <li><a href="#">Wishlist</a></li>
+            <!-- <li><a href="#">Wishlist</a></li> -->
             @if(isAuthenticated()){
             <li><a (click)="logout()">Logout</a></li>
             }
@@ -47,17 +47,15 @@
         </div>
       </div>
       }
-      <a href="#"><span class="icon"></span> Wishlist</a>
-      <a href="#">
-        <span class="icon">
-
+      <div class="profile-container underline-animation" matBadge="{{cartCount}}">
+      <a (click)="naviagetToCart()" style="cursor: pointer;">
+        <span class="icon d-flex align-items-center">
+          <span class="material-symbols-outlined">
+            shopping_cart_checkout
+            </span>
         </span>
-        @if(cartCount > 0){
-          <span>
-            {{ cartCount }}
-          </span>
-        } Bag
       </a>
+    </div>
     </div>
 
   </div>
